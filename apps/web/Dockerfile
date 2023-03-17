@@ -1,7 +1,7 @@
 FROM node:16 AS builder
 
 WORKDIR /app
-RUN yarn global add turbo
+RUN pnpm global add turbo
 COPY . .
 RUN turbo prune --scope=@rallly/web --docker
 
@@ -10,20 +10,20 @@ FROM node:16 AS installer
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn --network-timeout 1000000
+COPY --from=builder /app/out/pnpm.lock ./pnpm.lock
+RUN pnpm --network-timeout 1000000
 
 # Build the project
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
-RUN yarn db:generate
-RUN yarn build
+RUN pnpm db:generate
+RUN pnpm build
 
 FROM node:16 AS runner
 
 WORKDIR /app
 
-RUN yarn global add prisma
+RUN pnpm global add prisma
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

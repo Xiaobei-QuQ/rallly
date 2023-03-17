@@ -17,10 +17,10 @@ fi
 sed -i "" "s/\"version\": \".*\"/\"version\": \"$new_version\"/g" package.json
 
 # Update the changelog file
-yarn changelog:update
+pnpm changelog:update
 
 # Run prettier on the changelog file
-yarn prettier --write CHANGELOG.md
+pnpm prettier --write CHANGELOG.md
 
 # Commit the changes with a message indicating the new version number
 git add package.json CHANGELOG.md

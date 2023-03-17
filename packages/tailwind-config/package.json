@@ -4,7 +4,8 @@
   "private": true,
   "main": "tailwind.config.js",
   "types": "tailwind.config.d.ts",
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
     "tailwindcss": "^3.2.7"
   }
 }

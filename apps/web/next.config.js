@@ -4,6 +4,9 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 const { withSentryConfig } = require("@sentry/nextjs");
+
+const { PrismaPlugin } = require("@prisma/nextjs-monorepo-workaround-plugin");
+
 const { i18n } = require("./next-i18next.config");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -14,7 +17,10 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   output: "standalone",
   transpilePackages: ["@rallly/emails", "@rallly/database"],
-  webpack(config) {
+  webpack(config, { isServer }) {
+    if (isServer) {
+      config.plugins = [...config.plugins, new PrismaPlugin()];
+    }
     config.module.rules.push({
       test: /\.svg$/,
       issuer: /\.[jt]sx?$/,

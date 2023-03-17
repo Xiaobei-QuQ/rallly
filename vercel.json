@@ -1,4 +1,4 @@
 {
-  "buildCommand": "yarn build && DATABASE_URL=$DIRECT_DATABASE_URL yarn db:deploy",
+  "buildCommand": "pnpm build && DATABASE_URL=$DIRECT_DATABASE_URL pnpm db:deploy",
   "outputDirectory": "./apps/web/.next"
 }

@@ -42,12 +42,12 @@ const Menu: React.FunctionComponent<{ className: string }> = ({
       >
         {t("blog")}
       </Link>
-      <a
+      <Link
         href="https://support.rallly.co"
         className="hover:text-primary-500 rounded text-gray-400 transition-colors hover:no-underline hover:underline-offset-2"
       >
         {t("support")}
-      </a>
+      </Link>
       <Link
         href="https://github.com/lukevella/rallly"
         className="hover:text-primary-500 rounded text-gray-400 transition-colors hover:no-underline hover:underline-offset-2"

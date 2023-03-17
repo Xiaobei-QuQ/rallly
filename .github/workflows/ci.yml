@@ -22,16 +22,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: yarn
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Check linting rules
-        run: yarn lint
+        run: pnpm lint
 
       - name: Check types
-        run: yarn lint:tsc
+        run: pnpm lint:tsc
 
   # Label of the container job
   integration-tests:
@@ -54,7 +54,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: yarn
+          cache: pnpm
 
       - name: Set environment variables
         run: |
@@ -63,22 +63,22 @@ jobs:
           echo "SUPPORT_EMAIL=support@rallly.co" >> $GITHUB_ENV
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Run db
         run: |
           docker pull postgres:14.2
           docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=db postgres:14.2
-          yarn wait-on --timeout 60000 tcp:localhost:5432
+          pnpm wait-on --timeout 60000 tcp:localhost:5432
 
       - name: Deploy migrations
-        run: yarn db:deploy
+        run: pnpm db:deploy
 
       - name: Install playwright dependencies
-        run: yarn playwright install --with-deps chromium
+        run: pnpm playwright install --with-deps chromium
 
       - name: Run tests
-        run: yarn test
+        run: pnpm test
 
       - name: Upload artifact playwright-report
         if: ${{ success() || failure() }}

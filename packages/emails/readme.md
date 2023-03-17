@@ -9,7 +9,7 @@ First, install the dependencies:
 ```sh
 npm install
 # or
-yarn
+pnpm
 ```
 
 Then, run the development server:
@@ -17,7 +17,7 @@ Then, run the development server:
 ```sh
 npm run dev
 # or
-yarn dev
+pnpm dev
 ```
 
 Open [localhost:3000](http://localhost:3000) with your browser to see the result.

@@ -3,22 +3,19 @@
   "private": true,
   "version": "2.4.1",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "turbo dev",
     "start": "turbo run start --filter=@rallly/web...",
     "build": "turbo run build --filter=@rallly/web...",
     "db:deploy": "turbo db:deploy",
     "db:generate": "turbo db:generate",
-    "db:migrate": "yarn workspace @rallly/database prisma migrate dev",
-    "test": "yarn workspace @rallly/web test",
+    "db:migrate": "pnpm workspace @rallly/database prisma migrate dev",
+    "test": "pnpm workspace @rallly/web test",
     "lint": "turbo lint",
     "lint:tsc": "turbo lint:tsc",
     "changelog:update": "gitmoji-changelog",
     "release": "./scripts/create-release.sh"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "devDependencies": {
     "gitmoji-changelog": "^2.3.0",
     "prettier": "^2.8.4",
@@ -27,5 +24,5 @@
   "engines": {
     "node": "16.x"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "pnpm@7.28.0"
 }

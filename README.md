@@ -8,7 +8,7 @@
 
 Schedule group meetings with friends, colleagues and teams. Create meeting polls to find the best date and time to organize an event based on your participants' availability. Save time and avoid back-and-forth emails.
 
-Built with [Next.js](https://github.com/vercel/next.js/), [Prisma](https://github.com/prisma/prisma), [tRPC](https://github.com/trpc/trpc) & [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
+Built with [Next.js](https://github.com/vercel/next.js/), [pnpm](https://github.com/pnpm/pnpm), [tRPC](https://github.com/trpc/trpc) & [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
 
 ## Self-hosting
 
@@ -34,23 +34,23 @@ _See [configuration](#configuration) to see what parameters are availble._
 Install dependencies
 
 ```
-yarn
+pnpm
 ```
 
 Next, run the following to generate the database client and run migrations to create our schema
 
 ```
-yarn db:generate && yarn db:deploy
+pnpm db:generate && pnpm db:deploy
 ```
 
 Start the Next.js server
 
 ```
 # For development
-yarn dev
+pnpm dev
 # For production
-yarn build
-yarn start
+pnpm build
+pnpm start
 ```
 
 ## Configuration Options
